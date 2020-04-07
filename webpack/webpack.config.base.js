@@ -13,7 +13,7 @@ const pathConfig = {
 
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
-  entry: '../src/index.js',
+  entry: path.resolve(__dirname, '../src/index.js'),
   output: {
     filename: isDevelopment ? 'js/[name].js' : 'js/[name].[contenthash].js',
     path: pathConfig.static,
@@ -41,6 +41,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: isDevelopment ? 'development' : 'production'
+    }),
     new webpack.DefinePlugin({
       'process.env.buildTime': JSON.stringify(Date.now())
     }),

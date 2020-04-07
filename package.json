@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV=production webpack-cli --config webpack/webpack.config.dev.js"
+    "build": "NODE_ENV=production webpack-cli --config webpack/webpack.config.dev.js",
+    "build:serve": "webpack-dev-server --config webpack/webpack.config.dev.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,8 @@
     "html-webpack-plugin": "^4.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
     "webpack": "^4.42.1",
     "webpack-cli": "^4.0.0-beta.2",
     "webpack-dev-server": "^3.10.3",
