@@ -14,7 +14,7 @@ const webpackConfig = {
     host: '0.0.0.0',
     contentBase: root,
     compress: false,
-    port: 8419,
+    port: 8519,
     hot: true,
     inline: true
   }

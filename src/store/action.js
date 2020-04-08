@@ -1,10 +1,8 @@
 exports.action = {
-  increment: function increment() {
+  increment: function increment(list) {
     return {
       type: 'increment',
-      payload: '',
-      error: '',
-      meta: {}
+      payload: list
     }
   },
   decrement: function decrement() {

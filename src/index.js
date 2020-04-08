@@ -1,53 +1,26 @@
 const React = require('react')
 const { render } = require('react-dom')
-const { store, action } = require('./store')
+const { Provider } = require('react-redux')
+const { store } = require('./store')
 
-class HelloWorld extends React.Component {
-  constructor() {
-    super()
+const List = require('./components/List')
 
-    const state = store.getState()
+class App extends React.Component {
+  componentDidMount() {
+    setTimeout(function() {
+      let list = [3, 4, 5]
 
-    this.state = {
-      count: state.count
-    }
-
-    this.onIncrementHandler = this.onIncrementHandler.bind(this)
-    this.onDecrementHandler = this.onDecrementHandler.bind(this)
-  }
-
-  onIncrementHandler() {
-    store.dispatch(action.increment())
-  }
-
-  onDecrementHandler() {
-    store.dispatch(action.decrement())
+      store.dispatch({ type: 'LIST_ASYNC_DATA', payload: list })
+    }, 1e3)
   }
 
   render() {
-    const that = this
-
-    store.subscribe(function() {
-      const state = store.getState()
-
-      that.setState({
-        count: state.count
-      })
-    })
-
     return (
-      <div>
-        <div>Value: {this.state.count}</div>
-
-        <div onClick={this.onIncrementHandler}>
-          <span> 加 </span>
-        </div>
-        <div onClick={this.onDecrementHandler}>
-          <span> 减 </span>
-        </div>
-      </div>
+      <Provider store={store}>
+        <List />
+      </Provider>
     )
   }
 }
 
-render(<HelloWorld />, document.getElementById('app'))
+render(<App />, document.getElementById('app'))

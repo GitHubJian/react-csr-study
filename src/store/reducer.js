@@ -1,18 +1,17 @@
 const defaultState = {
-  count: 0
+  count: 0,
+  list: [1, 3, 4]
 }
 
-function reducer(state = defaultState, action) {
+exports.reducer = function reducer(state = defaultState, action) {
   switch (action.type) {
-    case 'increment':
-      state.count += 1
-      break
-    case 'decrement':
-      state.count -= 1
+    case 'LIST_ASYNC_DATA':
+      state = {
+        ...state,
+        list: action.payload
+      }
       break
   }
 
   return state
 }
-
-exports.reducer = reducer
